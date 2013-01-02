@@ -16,10 +16,11 @@
 		if (is_home () ) { 
 			bloginfo('name'); 
 		} elseif (is_category() || is_tag()) { 
-			single_cat_title(); echo ' &bull; ' ; bloginfo('name'); 
+			 bloginfo('name'); echo ' &bull; ' ; single_cat_title(); 
 		} elseif (is_single() || is_page()) { 
 			bloginfo('name'); echo ' &bull; ' ; single_post_title(); 
-		} else { wp_title('',true); 
+		} else { 
+			bloginfo('name'); echo ' &bull; ' ; wp_title('',true); 
 		}
 	?>
 </title>
@@ -59,17 +60,17 @@
 			<?php if (is_home() || is_front_page()) { ?>
 				    <a href="<?php bloginfo('siteurl');?>" title="<?php bloginfo('name'); ?>">
                       <h1 id="site-header">
-				    	<img src="<?php bloginfo('template_url');?>/images/jared_logo.png" width="300" height="50" />
+				    	<img src="<?php bloginfo('template_url');?>/images/jared_logo.png" />
                       </h1>
 				    </a>
 			<?php } else { ?>
 				    <a href="<?php bloginfo('siteurl');?>" title="<?php bloginfo('name'); ?>">
                        <div id="site-header">
-				    	<img src="<?php bloginfo('template_url');?>/images/jared_logo.png" width="300" height="50" />
+				    	<img src="<?php bloginfo('template_url');?>/images/jared_logo.png" />
                      </div>
 				    </a>
 			<?php } ?>
-            <div id="top-navigation"><?php wp_nav_menu('top-navigation'); ?></div>
+            <div id="top-navigation"><?php wp_nav_menu(array('theme_location' => 'top-navigation')); ?></div>
 		</div>
 		<div id="blog">
 			

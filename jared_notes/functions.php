@@ -24,8 +24,10 @@ add_theme_support( 'post-formats', array( 'gallery', 'video' ) );
 
 // Add the Top Navigation menu
 register_nav_menus( array(
-	'portfolio-nav' => __( 'Top Navigation', 'notesblog' ),
+	'portfolio-nav' => 'Top Navigation',
+	'bear-archive' => 'Bear Archive Navigation'
 ) );
+
 
 
 
@@ -46,6 +48,44 @@ function jared_webstats () { ?>
 	
 	</script>
 <?php }
+
+
+
+// Custom post type for Don't be a bear
+register_post_type('daily-bear', array(
+	'label' => __('Daily Bear'),
+	'singular_label' => __('Daily Bear'),
+	'public' => true,
+	'show_ui' => true,
+	'capability_type' => 'post',
+	'hierarchical' => false,
+	'taxonomies' => array('month'),
+	'has_archive' => true,
+	'rewrite' => array('slug' => 'dont-be-a-bear'),
+	'query_var' => true,
+	'supports' => array(
+		'title',
+		'editor',
+		'custom-fields'
+	)
+));
+
+
+
+// Custom taxonomy month for Don't be a bear
+add_action( 'init', 'bearsmonth', 0 );
+function bearsmonth() {
+	register_taxonomy( 'month', 'daily-bear',
+		array(
+			'heirarchical' => false,
+			'label' => 'Month',
+			'query_var' => true,
+			'rewrite' => true
+		)
+	);
+}
+
+
 
 
 // WIDGET AREAS ->
