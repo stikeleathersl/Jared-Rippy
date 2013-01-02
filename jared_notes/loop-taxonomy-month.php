@@ -10,17 +10,10 @@
 	<?php 
 	// The basic loop
 	
-	query_posts( array( 'month' => 'January', 'showposts' => 31) );
-	
 	while (have_posts() ) : the_post();
 
 	// Use this hook to do things between above the post
 	notesblog_above_post(); ?>
-    
-    <?php $sticky = get_post_meta($post->ID, 'sticky-post', $single = true); ?>
-    
-    <?php // Regular - not sticky posts
-		if ($sticky == '') { ?>
     
         <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
             
@@ -31,10 +24,9 @@
             <div class="bear_image"><?php the_content(); ?></div>
             
         </div>
+ 
         
-     <?php }	
-        
-	 // Use this hook to do things below the post
+	 <?php // Use this hook to do things below the post
 	 notesblog_below_post(); ?>
 	
 	<?php // End the loop
